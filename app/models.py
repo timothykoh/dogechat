@@ -41,6 +41,9 @@ class DogeUser(AbstractBaseUser):
     
     def get_Details(self):
         return ("%s" % (self.name), "%s" % (self.facebook_id))
+        
+    def get_id(self):
+        return "%s" % (self.facebook_id)
     
     class Meta:
         ordering = ('name',)
@@ -104,33 +107,44 @@ class Friendship(models.Model):
         return self.friends.count()
 
 class ConvoManager(models.Manager):
-    def getConvo(self,user):
-        return Conversation.objects.filter(rec = user)
+    def getConvo(self,rec_pri_id):
+        return Conversation.objects.filter(rec_pri_id = rec_pri_id)
     
-    def createConvo(self,send,rec,msg):
+    def createConvo(self,sender_pri_id,sender_fb_id,rec_pri_id,rec_fb_id,msg):
+        send = DogeUser.objects.get(id = sender_pri_id)
+        rec = DogeUser.objects.get(id = rec_pri_id)
         check = Friendship.objects.are_friends(send,rec)
         if check:
             return 
-            Conversation.objects.create(sender = send, rec = rec, convo1 = msg)
+            Conversation.objects.create(
+                sender_pri_id = sender_pri_id,
+                sender_fb_id = sender_fb_id,
+                rec_pri_id = rec_pri_id,
+                rec_fb_id = rec_fb_id,
+                dogetext = msg)
 
 class Conversation(models.Model):
     msg_id = models.AutoField(primary_key = True)
-    sender = models.ForeignKey(DogeUser,related_name='msg_sender')
-    rec = models.ForeignKey(DogeUser,related_name='msg_rec')
+    sender_pri_id = models.BigIntegerField(blank = False)
+    sender_fb_id = models.BigIntegerField(blank = False)
+    rec_pri_id = models.BigIntegerField(blank = False)
+    rec_fb_id = models.BigIntegerField(blank = False)    
     boolRead = models.BooleanField(default = False)
     
     timeSent = models.DateTimeField(blank = False,auto_now_add=True)
     
-    convo1 = models.TextField() 
+    dogetext = models.TextField() 
     
     def getDetails(self):
         return { 
-            'msg_id' : "%s" % (self.msg_id),
-            'sender' : "%s" % self.sender.get_nick,
-            'rec' : "%s" % self.rec.get_nick,
+            'msg_id' : "%s" % self.msg_id,
+            'sender_pri_id' : "%s" % self.sender_pri_id,
+            'send_fb_id' : '%s' % self.sender_fb_id,
+            'rec_pri_id' : "%s" % self.rec_pri_id,
+            'rec_fb_id' : '%s' % self.rec_fb_id,            
             'boolRead' : "%s" % self.boolRead,
             'timeSent' : "%s" % self.timeSent,
-            'convo1' : "%s" % self.convo1
+            'dogetext' : "%s" % self.dogetext
                 }
                 
     
