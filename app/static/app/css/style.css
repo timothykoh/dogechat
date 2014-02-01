@@ -216,17 +216,20 @@
 
 #search_field{
     /*display:none;*/
-    position: fixed;
-    top: 12%;
-    border: 1px solid #999999;
+
+    border-radius: 75px;
+    font-size: .75em;
     width: 90%;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin: 0;
     left: 5%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-    
+    padding: .6em .9em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    box-shadow: 0 0 0 1px #bababa, 0 0 0 2px #fff, inset 0 0 10px rgba(0, 0, 0, 0.17);
+    outline: none;
+    border: 0;
+    color: #656565;
+    -webkit-appearance: none;
 }
 
