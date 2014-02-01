@@ -12,9 +12,16 @@ $(window).load(function(){
     $("#doge_back").click(function(){
         $("#doge_page").removeClass("shown");
     });
+    $("#add_but").click(function(){
+        $("#addfriend_page").addClass("shown");
+    })
+    $("#add_back").click(function(){
+        $("#addfriend_page").removeClass("shown");
+    });
 });
 
 function switchPage(pageid){
     $(".page").removeClass("selected");
     $("#" + pageid).addClass("selected");
 }
+

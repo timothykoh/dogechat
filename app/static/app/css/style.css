@@ -66,10 +66,67 @@
         margin-top: 15px;
         margin-left: 5px;
     }
-    .chat_item .time{
-        float: right;
-        color: #a5a5a5;
+
+.contact{
+    padding: 5px 15px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #fafafa;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #606060;
+    cursor: pointer;
+}
+    .contact .profile_pic{
+        border-radius: 10px;
+        vertical-align: top;
     }
+    .chat_item span{
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+.contact_index{
+    padding: 5px 15px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #403B36;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFEBD6;
+    cursor: pointer;
+}
+#people{
+    height: 100%;
+}
+    #people #people_top_bar{
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        background-color: #ecf0f1;
+        display: block;
+        text-align: center;
+    }
+        #people #people_top_bar #add_but{
+            display: block;
+            position: absolute;
+            padding: 15px;
+            right: 0px;
+            cursor: pointer;
+        }
+        #people #people_top_bar span{
+            font-family: "Raleway", sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            padding-top: 15px;
+            display: inline-block;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+        }
+
 #doge_page{
     display: none;
 }
@@ -107,5 +164,37 @@
             position: absolute;
             padding: 15px;
             left: 0;
+            cursor: pointer;
+        }
+
+#addfriend_page{
+    display: none;
+}
+#addfriend_page.shown{
+    display: block;
+}
+    #addfriend_page #addfriend_top_bar{
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        background-color: #ecf0f1;
+        display: block;
+        text-align: center;
+        z-index: 5; 
+    }
+        #addfriend_page #addfriend_top_bar span{
+            font-family: "Raleway", sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            padding-top: 15px;
+            display: inline-block;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+        }
+        #addfriend_page #addfriend_top_bar #add_back{
+            position: absolute;
+            padding: 15px;
+            left: 0px;
             cursor: pointer;
         }
