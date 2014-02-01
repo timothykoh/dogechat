@@ -13,7 +13,6 @@ stm = PorterStemmer()
 doge_words = ["much", "such", "very", "so", "many"]
 doge_weights = [4,3,3,2,2]
 wnt = {'N':'n', 'NP':'n', 'ADJ':'a', 'ADV':'r', 'V':'v', 'VD':'v', 'VG':'v', 'VN':'v', 'FW':'n', 'UH':'n'}
-used = set()
 
 def weighted_choice(weights):
     rnd = random.random() * sum(weights)
@@ -41,6 +40,7 @@ def _to_stem(word, tag):
 
 def to_doge(text):
     result = ["wow"]
+    used = set()
     tags = tagger.get_tags(text)
     # print tags
     def much_want(tag):
@@ -56,7 +56,7 @@ def to_doge(text):
     after = []
     for word, tag in tags:
         if much_want(tag) and word not in used:
-            used.add(word)
+            used.add(_to_stem(word, tag))
             after.append(_to_stem(word, tag))
 
     for word in after:
