@@ -70,7 +70,7 @@ def getContacts(request):
     curUser = DogeUser.objects.get(facebook_id=fb_id)
     friends = FriendMan.friends_of(curUser)
     info = []
-    for friend in friends
+    for friend in friends:
         info.append(friend.get_Details())
     infoDict = {"contactInfo":info}
     contactData = serializers.serialize('json',infoDict)
