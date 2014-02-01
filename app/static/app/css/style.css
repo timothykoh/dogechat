@@ -244,6 +244,39 @@
     -webkit-appearance: none;
 }
 
+#send_chat_popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: none;
+    background-color: rgba(200,200,200,0.5);
+}
+#send_chat_popup.shown{
+    display: block;
+}
+    #send_chat_form{
+        width: 80%;
+        height: 60px;
+        margin: auto;
+        margin-top: 150px;
+        background-color: rgba(0,0,0,0.6);
+        text-align: center;
+        padding: 5px;
+    }
+    #send_chat_form span{
+        display: block;
+        font-family: "Raleway";
+        font-weight :300;
+        color: #eeeeee;
+        margin-top: 10px;
+    }
+
+#send_chat_field{
+    margin-top: 5px;
+    width: 80%;
+}
+
 #search_form{
     display: none;
     background-color: #FFFFFF;

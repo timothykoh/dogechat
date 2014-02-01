@@ -40,7 +40,7 @@ class DogeUser(AbstractBaseUser):
         return "%s" % (self.nickname)
     
     def get_Details(self):
-        return ("%s" % (self.name), "%s" % (self.facebook_id))
+        return ("%s" % (self.name), "%s" % (self.facebook_id), "%s" % (self.id))
         
     def get_fb_id(self):
         return "%s" % (self.facebook_id)
@@ -116,7 +116,7 @@ class ConvoManager(models.Manager):
         rec = DogeUser.objects.get(id = rec_pri_id)
         check = Friendship.objects.are_friends(send,rec)
         if check:
-            return Conversation.objects.create(sender_pri_id = send.id, sender_fb_id = send.facebook_id, rec_pri_id = rec.id, rec_fb_id = rec.facebook_id, dogetext = dogetext)
+            return Conversation.objects.create(sender_name = send.nickname,sender_pri_id = send.id, sender_fb_id = send.facebook_id, rec_pri_id = rec.id, rec_fb_id = rec.facebook_id, dogetext = dogetext)
 
 class Conversation(models.Model):
     msg_id = models.AutoField(primary_key = True)
@@ -125,6 +125,7 @@ class Conversation(models.Model):
     rec_pri_id = models.BigIntegerField(blank = False)
     rec_fb_id = models.BigIntegerField(blank = False)    
     boolRead = models.BooleanField(default = False)
+    sender_name = models.CharField(max_length=100,blank = False,unique = False)
     
     timeSent = models.DateTimeField(blank = False,auto_now_add=True)
     
@@ -132,6 +133,7 @@ class Conversation(models.Model):
     
     def getDetails(self):
         return { 
+            'nickname' : "%s" % self.sender_name,
             'msg_id' : "%s" % self.msg_id,
             'sender_pri_id' : "%s" % self.sender_pri_id,
             'sender_fb_id' : '%s' % self.sender_fb_id,
