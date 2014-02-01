@@ -215,7 +215,7 @@
     }
 
 #search_field{
-    /*display:none;*/
+    display:none;
     position: fixed;
     top: 10%;
     border-radius: 75px;
