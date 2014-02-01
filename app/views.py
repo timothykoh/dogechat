@@ -84,6 +84,7 @@ def getContacts(request):
     friends = FriendMan.friends_of(curUser)
     info = []
     for friend in friends:
+        print friend.get_Details()
         info.append(friend.get_Details())
     infoDict = {"contactInfo":info}
     return render(request,"app/people.html",infoDict)
