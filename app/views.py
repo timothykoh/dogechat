@@ -1,11 +1,14 @@
+import json
+
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import (HttpResponseRedirect, HttpResponse)
 from django.core.urlresolvers import reverse
 
-from app.models import User
+
+from app.models import DogeUser
 from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
-
+from django.core import serializers
 
 # Create your views here.
 def index(request):
@@ -42,3 +45,9 @@ def login_success(request):
 
     request.session["user_info"] = user_info
     return HttpResponseRedirect(reverse("index"))
+
+def getfriend(request):
+    searchTerm = request.GET['term']
+    res = DogeUser.objects.filter(name__contains = "")
+    data = serializers.serialize('json',res)
+    return HttpResponse(data,mimetype='application/json')
