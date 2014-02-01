@@ -71,7 +71,7 @@ def getContacts(request):
     friends = FriendMan.friends_of(curUser)
     info = dict()
     start = 0
-    for friend in friends
+    for friend in friends:
         info[start] = friend.get_Details()
         start += 1
     contactData = serializers.serialize('json',info)
