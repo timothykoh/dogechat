@@ -85,7 +85,7 @@ def read(request):
     getChat = Conversation.objects.get(msg_id = curChat)
     checkSend = (getChat.sender_pri_id == sender)
     checkRec = getChat.rec_pri_id == rec
-    if (checkRec && checkRec)
+    if (checkRec and checkRec):
         getChat.boolRead = True
         getChat.save()
         
