@@ -69,18 +69,3 @@ def getfriend(request):
     res = DogeUser.objects.filter(name__contains = "")
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
-
-<<<<<<< HEAD
-def getContacts(request):
-    fb_id = request.GET['user_id']
-    curUser = DogeUser.objects.get(facebook_id=fb_id)
-    friends = FriendMan.friends_of(curUser)
-    info = []
-    for friend in friends:
-        print friend.get_Details()
-        info.append(friend.get_Details())
-    infoDict = {"contactInfo":info}
-    return render(request,"app/people.html",infoDict)
-=======
->>>>>>> c01ad0c404465e474931ef35ff370d63273f361a
-
