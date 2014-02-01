@@ -14,17 +14,27 @@ def index(request):
     if request.session.has_key("user_info") == False:
         return HttpResponseRedirect(reverse("login"))
     else:
-        print request.session["user_info"]
-        # graph = get_facebook_graph(request)
-        # facebook_me = graph.get("me")
-        # print facebook_me
-        # name = facebook_me["name"]
-        # email = facebook_me["email"]
-        # facebook_id = facebook_me["id"]
-
-        # user_list = User.objects.all()
-        # context = {"user_list" : user_list}
-        return render(request, "app/index.html")
+        chat1 = {
+                    "nickname" : "Timothy",
+                    "facebook_id" : "747108288",
+                    "time" : "11:30am",
+                    "sent" : 1
+                }
+        chat2 = {
+                    "nickname" : "Foo Lai",
+                    "facebook_id" : "choo.f.lai",
+                    "time" : "12:22pm",
+                    "sent" : 1
+                }
+        chat3 = {
+                    "nickname" : "Vincent",
+                    "facebook_id" : "vincom2",
+                    "time" : "4:31pm",
+                    "sent" : 0
+                }
+        chat_list = [chat1, chat2, chat3]
+        context = {"chat_list" : chat_list}
+        return render(request, "app/index.html", context)
 
 def login(request):
     return render(request, "app/login.html")

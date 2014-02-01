@@ -43,7 +43,26 @@
             color: #999999;
         }
 
-
-li{
-    color: red;
+.chat_item{
+    padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #fafafa;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #606060;
 }
+    .chat_item .profile_pic{
+        border-radius: 10px;
+        vertical-align: top;
+    }
+    .chat_item span{
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+    .chat_item .time{
+        float: right;
+        color: #a5a5a5;
+    }
