@@ -81,6 +81,38 @@ $(window).load(function(){
             });
         }
     });
+    $(".contact").click(function(){
+        $("#send_chat_popup").addClass("shown");
+        window.send_userid = $(this).data("userid");
+    });
+    $("#send_chat_popup").click(function(e){
+        if (e.target != this){
+            return;
+        }
+        $(this).removeClass("shown");
+    });
+    $("#send_chat_form").submit(function(e){
+        e.preventDefault();
+        var msg = $("#send_chat_field").val();
+        if (msg === ""){
+            alert("Message is required.");
+        }
+        else{
+            $("#send_chat_field").val("");
+            $("#send_chat_popup").removeClass("shown");
+            $.ajax({
+                url: "send_msg",
+                type: "POST",
+                data: {
+                    "rec_pri_id": window.send_userid,
+                    "dogetext": msg
+                },
+                success: function(results){
+                    alert("Message Sent!");
+                }
+            });
+        }
+    });
 });
 
 function switchPage(pageid){
