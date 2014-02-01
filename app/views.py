@@ -19,28 +19,20 @@ def index(request):
         name = curUser["name"]
         email = curUser["email"]
         facebook_id = curUser["facebook_id"]
+        user = DogeUser.objects.get(id = curUser["primary_id"])
+        curChat = Conversation.objects.getConvo(user)
+        num = 0
+        chat_list = []
+        for i in curChat:
+            chat_list.append(i.getDetails)
+            num += 1    
         
+        friends = Friendship.objects.friends_of(user)
+        info = []
+        for friend in friends:
+            info.append(friend.get_Details())
         
-        chat1 = {
-                    "nickname" : "Timothy",
-                    "facebook_id" : "747108288",
-                    "time" : "11:30am",
-                    "sent" : 1
-                }
-        chat2 = {
-                    "nickname" : "Foo Lai",
-                    "facebook_id" : "choo.f.lai",
-                    "time" : "12:22pm",
-                    "sent" : 1
-                }
-        chat3 = {
-                    "nickname" : "Vincent",
-                    "facebook_id" : "vincom2",
-                    "time" : "4:31pm",
-                    "sent" : 0
-                }
-        chat_list = [chat1, chat2, chat3]
-        context = {"chat_list" : chat_list}
+        context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
 def login(request):
@@ -65,7 +57,7 @@ def login_success(request):
                     "name" : name,
                     "email" : email,
                     "facebook_id" : facebook_id,
-                    "primaryID" : primary_id
+                    "primary_id" : primary_id
     }
 
     request.session["user_info"] = user_info
@@ -78,6 +70,7 @@ def getfriend(request):
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
+<<<<<<< HEAD
 def getContacts(request):
     fb_id = request.GET['user_id']
     curUser = DogeUser.objects.get(facebook_id=fb_id)
@@ -88,4 +81,6 @@ def getContacts(request):
         info.append(friend.get_Details())
     infoDict = {"contactInfo":info}
     return render(request,"app/people.html",infoDict)
+=======
+>>>>>>> c01ad0c404465e474931ef35ff370d63273f361a
 
