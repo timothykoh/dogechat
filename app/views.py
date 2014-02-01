@@ -33,7 +33,7 @@ def index(request):
         info = []
         for friend in friends:
             info.append(friend.get_Details())
-
+        info = {("foo",1235123),("lai",1231251)}
         context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
