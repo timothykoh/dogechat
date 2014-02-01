@@ -7,16 +7,16 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
 class DogeManager(BaseUserManager):
     def _create_user(self,email,is_manager,name,
         facebook_id):
-        user = self.model(nickname = nickname, email = email, 
+        user = self.model(nickname = name, email = email, 
                     is_manager = is_manager,name = name,is_active = True,
                     date_joined = now, facebook_id = facebook_id)
         user.save()
         return user
     
     def create_user(self,email,name,facebook_id):
-        return _create_user(
+        return _create_user(email,False,name,facebook_id)
 
-    def create_superuser(self,nickname,email,name,facebook_id):
+    def create_superuser(self,email,name,facebook_id):
         return self._create_user(email, True,name,facebook_id)  
 
 class DogeUser(AbstractBaseUser):
@@ -96,4 +96,8 @@ class Conversation(models.Model):
     user1 = models.OneToOneField(DogeUser)
     user2 = models.OneToOneField(DogeUser)
     boolFriend = models.BooleanField(default = False, blank = False)
-    dateLast = models.DateTimeField(auto_now = True, blank = False)
+    
+    dateLast1 = models.DateTimeField(blank = False)
+    dateLast2 = models.DateTimeField(blank = False)
+    
+    
