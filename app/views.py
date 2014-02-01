@@ -70,4 +70,3 @@ def getfriend(request):
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
-
