@@ -19,12 +19,6 @@ def index(request):
         name = curUser["name"]
         email = curUser["email"]
         facebook_id = curUser["facebook_id"]
-        openChat = 
-        
-        
-        
-        
-        
         
         
         chat1 = {
