@@ -30,7 +30,7 @@ def index(request):
             num += 1    
         
         friends = Friendship.objects.friends_of(user)
-        info = []
+        info = [("hello", 1),("byebye",2)]
         for friend in friends:
             info.append(friend.get_Details())
 #         chat_list = [
