@@ -24,15 +24,8 @@ def index(request):
         num = 0
         chat_list = []
         for i in curChat:
-            num = {
-                    'user1_nick' : i.user1.get_nick,
-                    'user2_nick' : i.user2.get_nick,
-                    'usr1_last_sent' : i.dateLast,
-                    'dogetext' : i.convo
-                    }
-            chat_list.append(num)
-            num += 1
-        
+            chat_list.append(i.getDetails)
+            num += 1    
         
         friends = Friendship.objects.friends_of(user)
         info = []

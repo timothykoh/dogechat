@@ -107,21 +107,34 @@ class Friendship(models.Model):
 
 class ConvoManager(models.Manager):
     def getConvo(self,user):
-        return Conversation.objects.filter(user1 = user) | Conversation.objects.filter(user2 = user)
+        return Conversation.objects.filter(rec = user)
     
-    def createConvo(self,user1,user2):
-        check = Friendship.objects.are_friends(user1,user2)
+    def createConvo(self,send,rec,msg):
+        check = Friendship.objects.are_friends(send,rec)
         if check:
-            return Conversation.objects.create(user1 = user1,user2 = user2, boolFriend = check, convoUser1 = "")
+            return 
+            Conversation.objects.create(sender = send, rec = rec, convo1 = msg)
 
 class Conversation(models.Model):
-    user1 = models.OneToOneField(DogeUser,related_name='convo_user1')
-    user2 = models.OneToOneField(DogeUser,related_name='convo_user2')
-    boolFriend = models.BooleanField(default = False, blank = False)
+    msg_id = models.AutoField(primary_key = True)
+    sender = models.ForeignKey(DogeUser,related_name='msg_sender')
+    rec = models.ForeignKey(DogeUser,related_name='msg_rec')
+    boolRead = models.BooleanField(default = False)
     
-    dateLast = models.DateTimeField(blank = False,auto_now=True)
+    timeSent = models.DateTimeField(blank = False,auto_now_add=True)
     
-    convo = models.TextField()
+    convo1 = models.TextField() 
+    
+    def getDetails(self):
+        return { 
+            'msg_id' : "%s" % (msg_id),
+            'sender' : "%s" % sender.get_nick,
+            'rec' : "%s" % rec.get_nick,
+            'boolRead' : "%s" % boolRead,
+            'timeSent' : "%s" % timeSent,
+            'convo1' : "%s" % convo1
+                }
+                
     
     objects = ConvoManager()
 
