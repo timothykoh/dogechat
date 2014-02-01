@@ -100,4 +100,9 @@ class Conversation(models.Model):
     dateLast1 = models.DateTimeField(blank = False)
     dateLast2 = models.DateTimeField(blank = False)
     
+    convoUser1 = models.TextField()
+    convoUser2 = models.TextField()
+    
+    
+    
     
