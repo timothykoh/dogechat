@@ -41,6 +41,9 @@ class DogeUser(AbstractBaseUser):
     
     def get_Details(self):
         return ("%s" % (self.name), "%s" % (self.facebook_id))
+        
+    def get_id(self):
+        return "%s" % (self.facebook_id)
     
     class Meta:
         ordering = ('name',)
@@ -127,10 +130,12 @@ class Conversation(models.Model):
         return { 
             'msg_id' : "%s" % (self.msg_id),
             'sender' : "%s" % self.sender.get_nick,
+            'send_id' : '%s' % self.sender.get_id,
             'rec' : "%s" % self.rec.get_nick,
+            'rec_id' : '%s' % self.sender.get_id,
             'boolRead' : "%s" % self.boolRead,
             'timeSent' : "%s" % self.timeSent,
-            'convo1' : "%s" % self.convo1
+            'dogetext' : "%s" % self.convo1
                 }
                 
     
