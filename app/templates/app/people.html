@@ -1,6 +1,7 @@
-{% if contactInfo %}
+
+{% if contact_info %}
 <ul>
-{% for name,facebook_id in contactInfo %}
+{% for name,facebook_id in contact_info %}
  	{% ifchanged name.0 %}
 	<li class="contact_index">{{ name.0 }}</li>
 	{% endifchanged %}

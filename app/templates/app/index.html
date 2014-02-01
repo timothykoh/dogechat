@@ -22,23 +22,23 @@
         </font>
     </div>
     <div class="page selected" id="chat">
+        <div id="chat_top_bar">
+            <span id="chat_title">Chat</span>
+        </div>
         {% include 'app/chat.html' %}
     </div>
 
-    <div id="addfriend_page">
-        <div id="addfriend_top_bar">
-            <img id="add_back" src="{% static 'app/icons/previous.png' %}" alt="">
-            <span>Add Friend</span>
-        </div>
-    </div>
     <div class="page" id="people">
+            <form id="search_form">
+                <input id="search_field" type="text"/>
+            </form>
         <div id="people_top_bar">
             <img id="add_but" src="{% static 'app/icons/add.png' %}" alt="">
+            <img id="add_back" src="{% static 'app/icons/previous.png' %}" alt="">
             <span id="contacts_title">Friends</span>
         </div>
         {% include 'app/people.html' %}
     </div>
-
 
     <div id="btm_bar">
         <div class="page_switcher selected" data-pageid="chat">

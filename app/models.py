@@ -42,7 +42,7 @@ class DogeUser(AbstractBaseUser):
     def get_Details(self):
         return ("%s" % (self.name), "%s" % (self.facebook_id))
         
-    def get_id(self):
+    def get_fb_id(self):
         return "%s" % (self.facebook_id)
     
     class Meta:
@@ -139,7 +139,7 @@ class Conversation(models.Model):
         return { 
             'msg_id' : "%s" % self.msg_id,
             'sender_pri_id' : "%s" % self.sender_pri_id,
-            'send_fb_id' : '%s' % self.sender_fb_id,
+            'sender_fb_id' : '%s' % self.sender_fb_id,
             'rec_pri_id' : "%s" % self.rec_pri_id,
             'rec_fb_id' : '%s' % self.rec_fb_id,            
             'boolRead' : "%s" % self.boolRead,

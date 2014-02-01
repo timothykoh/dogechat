@@ -47,10 +47,38 @@ $(window).load(function(){
         $("#doge_page").removeClass("shown");
     });
     $("#add_but").click(function(){
-        $("#addfriend_page").addClass("shown");
+        $("#contacts_title").html("Add Friend");
+        $(this).css("display", "none");
+        $("#search_bar").css("display", "block");
+        $("#add_back").css("display", "block");
     })
     $("#add_back").click(function(){
-        $("#addfriend_page").removeClass("shown");
+        $("#contacts_title").html("Friend");
+        $(this).css("display", "none");
+        $("#search_bar").css("display","none");
+        $("#add_but").css("display", "block");
+    });
+    $("#search_form").submit(function(e){
+        e.preventDefault();
+        var search_term = $("#search_field").val();
+        if (search_term === ""){
+            alert("Search term required.");
+        }
+        else{
+            $.ajax({
+                url: "",
+                type: "GET",
+                data:{
+                    "term": search_term
+                },
+                success: function(user_array){
+                    console.log(user_array);
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
     });
 });
 
