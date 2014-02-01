@@ -51,12 +51,14 @@ $(window).load(function(){
         $(this).css("display", "none");
         $("#search_field").css("display", "block");
         $("#add_back").css("display", "block");
+        $("#search_form").css("display","block");
     })
     $("#add_back").click(function(){
         $("#contacts_title").html("Friend");
         $(this).css("display", "none");
         $("#search_field").css("display","none");
         $("#add_but").css("display", "block");
+        $("#search_page").css("display","none");
     });
     $("#search_form").submit(function(e){
         e.preventDefault();
