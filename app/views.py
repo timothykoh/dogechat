@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import (HttpResponseRedirect, HttpResponse)
 from django.core.urlresolvers import reverse
 
-from app.models import all
+from app.models import *
 from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
 from django.core import serializers
@@ -54,6 +54,9 @@ def login_success(request):
     }
 
     request.session["user_info"] = user_info
+
+    DogeManager.create_user(email, name, facebook_id)
+
     return HttpResponseRedirect(reverse("index"))
 
 def getfriend(request):
