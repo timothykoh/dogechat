@@ -1,0 +1,243 @@
+.page{
+    display: none;
+}
+
+.page.selected{
+    display: block;
+}
+
+#btm_bar{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+    #btm_bar .page_switcher{
+        display: inline-block;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        text-decoration: none;
+        padding-top: 6px;
+        padding-bottom: 4px;
+        cursor: pointer;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;         /* Opera/IE 8+ */
+    }
+    #btm_bar .page_switcher.selected{
+        background-color: #ecf0f1;
+    }
+    #btm_bar .page_switcher:first-child{
+        border-right: 1px solid #dddddd;
+    }
+        #btm_bar .page_switcher img{
+            display: inline-block;
+        }
+        #btm_bar .page_switcher span{
+            font-family: "Raleway", sans-serif;
+            display: block;
+            font-size: 12px;
+            margin-top: 3px;
+            font-weight: 300;
+            color: #999999;
+        }
+
+#chat{
+    height: 100%;
+}
+    #chat #chat_top_bar{
+        position: fixed;
+        top:0px;
+        height: 10%;
+        width: 100%;
+        background-color: #ecf0f1;
+        display: block;
+        text-align: center;
+    }
+        #chat #chat_top_bar span{
+            font-family: "Raleway", sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            padding-top: 15px;
+            display: inline-block;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+        }
+
+
+.chat_item{
+    padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #fafafa;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #606060;
+    cursor: pointer;
+}
+.chat_item:active{
+    background-color: #e5e5e5;
+}
+    .chat_item .profile_pic{
+        border-radius: 10px;
+        vertical-align: top;
+    }
+    .chat_item span{
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+
+.contact{
+    padding: 5px 15px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #fafafa;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #606060;
+    cursor: pointer;
+}
+    .contact .profile_pic{
+        border-radius: 10px;
+        vertical-align: top;
+    }
+    .contact span{
+        display: inline-block;
+        vertical-align: top;
+        margin-top:5px;
+        margin-left:5px;
+    }
+
+.contact_index{
+    padding: 5px 15px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #403B36;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFEBD6;
+    cursor: pointer;
+}
+#people{
+    margin-top: 50px;
+    height: 100%;
+}
+    #people #people_top_bar{
+        position: fixed;
+        top: 0px;
+        height: 10%;
+        width: 100%;
+        background-color: #ecf0f1;
+        display: block;
+        text-align: center;
+    }
+        #people #people_top_bar #add_but{
+            display: block;
+            position: absolute;
+            padding: 15px;
+            right: 0px;
+            cursor: pointer;
+        }
+        #people #people_top_bar #add_back{
+            position: absolute;
+            padding: 15px;
+            left: 0px;
+            cursor: pointer;
+            display: none;
+        }
+        #people #people_top_bar span{
+            font-family: "Raleway", sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            padding-top: 15px;
+            display: inline-block;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+        }
+
+#doge_page{
+    display: none;
+}
+#doge_page.shown{
+    display: block;
+}
+    #doge_page #doge_img{
+        position: absolute;
+        top: 10%;
+        width: 100%;
+        height: 90%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 2;
+    }
+    #doge_page #doge_top_bar{
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        background-color: #ecf0f1;
+        display: block;
+        text-align: center;
+    }
+        #doge_page #doge_top_bar span{
+            font-family: "Raleway", sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            padding-top: 15px;
+            display: inline-block;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+        }
+        #doge_page #doge_top_bar #doge_back{
+            position: absolute;
+            padding: 15px;
+            left: 0;
+            cursor: pointer;
+        }
+#doge_text_area{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 90%;
+    z-index: 3;
+}
+    #doge_text_area .doge_text{
+        font-size: 25px;
+        font-style: "Comic Sans", "Comic Sans MS", sans-serif;
+        color: red;
+        display: block;
+        position: absolute;
+    }
+
+#search_field{
+    display:none;
+    position: fixed;
+    top: 10%;
+    border-radius: 75px;
+    font-size: .75em;
+    width: 90%;
+    left: 5%;
+    padding: .6em .9em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    box-shadow: 0 0 0 1px #bababa, 0 0 0 2px #fff, inset 0 0 10px rgba(0, 0, 0, 0.17);
+    outline: none;
+    border: 0;
+    color: #656565;
+    -webkit-appearance: none;
+}
+
+#search_form{
+    display: none;
+    background-color: #FFFFFF;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
