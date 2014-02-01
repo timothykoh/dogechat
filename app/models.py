@@ -98,7 +98,7 @@ class Friendship(models.Model):
     objects = FriendMan()
         
     def __unicode__(self):
-        return u'%(user)s\'s friends' % {'user': unicode(self.user.get_nick)
+        return u'%(user)s\'s friends' % {'user': unicode(self.user.get_nick)}
     
     def friend_count(self):
         return self.friends.count()
