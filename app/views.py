@@ -10,7 +10,8 @@ from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
 from django.core import serializers
 
-# from dogeify.dogeify import to_doge
+from dogeify.dogeify import to_doge
+print to_doge("hey this is going to be doge")
 
 # Create your views here.
 def index(request):
@@ -38,7 +39,6 @@ def index(request):
         return render(request, "app/index.html", context)
 
 def login(request):
-    # print to_doge("hey this is going to be doge")
     return render(request, "app/login.html")
 
 def login_success(request):
@@ -104,4 +104,13 @@ def startChat(request):
         sender_pri_id,sender_fb_id,
         rec_pri_id, rec_fb_id,
         msg)
+    return render(request,"app/index.html")
+
+def askFriend(request):
+    curUser = request.session["user_info"]
+    from_user = DogeUser.objects.get(id = curUser['primary_id'])
+    friend = request.session['friend_pri_id']
+    to_user = DogeUser.objects.get(id = friend)
+    newReq = FriendReq.objects.create(from_user = from_user,to_user = to_user)
+    newReq.accept() # accept first for now
     return render(request,"app/index.html")
