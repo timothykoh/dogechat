@@ -11,6 +11,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
 </head>
 <body>
+    <div id="doge_page">
+        <div id="doge_top_bar">
+            <img id="doge_back" src="{% static 'app/icons/previous.png' %}" alt="">
+            <span></span>
+        </div>
+        <div id="doge_img"></div>
+    </div>
     <div class="page selected" id="chat">
         {% include 'app/chat.html' %}
     </div>
@@ -29,5 +36,10 @@
     </div>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="{% static 'app/js/script.js' %}"></script>
+    <style>
+        #doge_img{
+            background-image: url({% static 'app/img/doge_img.jpg' %});
+        }
+    </style>
 </body>
 </html>
