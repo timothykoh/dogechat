@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render
 from django.http import (HttpResponseRedirect, HttpResponse)
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 
 from app.models import *
 from django_facebook.api import get_facebook_graph
@@ -47,15 +48,21 @@ def login_success(request):
     email = facebook_me["email"]
     facebook_id = facebook_me["id"]
 
+    try:
+        curUser = DogeUser.objects.get(facebook_id=facebook_id)
+    except ObjectDoesNotExist:
+        curUser = DogeUser.objects.create_user(email,name,facebook_id)
+    
+    primary_id = curUser.id
+        
     user_info = {
                     "name" : name,
                     "email" : email,
-                    "facebook_id" : facebook_id
+                    "facebook_id" : facebook_id,
+                    "primaryID" : primary_id
     }
 
     request.session["user_info"] = user_info
-
-    DogeManager.create_user(email, name, facebook_id)
 
     return HttpResponseRedirect(reverse("index"))
 

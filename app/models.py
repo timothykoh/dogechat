@@ -5,16 +5,18 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
 
 # Create your models here.
 class DogeManager(BaseUserManager):
+
     def _create_user(self,email,is_manager,name,
         facebook_id):
+        now = timezone.now()
         user = self.model(nickname = name, email = email, 
                     is_manager = is_manager,name = name,is_active = True,
                     date_joined = now, facebook_id = facebook_id)
         user.save()
         return user
-    
+
     def create_user(self,email,name,facebook_id):
-        return _create_user(email,False,name,facebook_id)
+        return self._create_user(email,False,name,facebook_id)
 
     def create_superuser(self,email,name,facebook_id):
         return self._create_user(email, True,name,facebook_id)  
