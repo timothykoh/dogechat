@@ -10,6 +10,8 @@ from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
 from django.core import serializers
 
+from dogeify.dogeify import to_doge
+
 # Create your views here.
 def index(request):
     if request.session.has_key("user_info") == False:
@@ -31,11 +33,12 @@ def index(request):
         info = []
         for friend in friends:
             info.append(friend.get_Details())
-        
+
         context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
 def login(request):
+    print to_doge("hey this is going to be doge")
     return render(request, "app/login.html")
 
 def login_success(request):
@@ -66,8 +69,18 @@ def login_success(request):
 
 def getfriend(request):
     searchTerm = request.GET['term']
-    res = DogeUser.objects.filter(name__contains = "")
+    num = request.GET['num']
+    start = request.GET['start']
+    
+    res = DogeUser.objects.filter(name__contains = searchTerm)
+    
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
-
+def startChat(request):
+    curUser = request.session["user_info"]
+    user = DogeUser.objects.get(id = curUser["primary_id"])
+    #someone needs to do what kind of event submit is used to let me know who he clicked on
+    
+    newC = Conversation.objects.createConvo(user,rec,msg)
+    return render(request,"app/index.html")
