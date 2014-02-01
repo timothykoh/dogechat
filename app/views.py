@@ -11,7 +11,6 @@ from open_facebook import OpenFacebook
 from django.core import serializers
 
 from dogeify.dogeify import to_doge
-print to_doge("hey this is going to be doge")
 
 # Create your views here.
 def index(request):
@@ -34,7 +33,15 @@ def index(request):
         info = []
         for friend in friends:
             info.append(friend.get_Details())
+        # chat_list = [
+        # {
+        #     "msg_id" : "1",
+        #     "facebook_id" :"34324221",
+        #     "sender" : "43",
+        #     "timeSent" : "12",
+        #     "dogetext" : "much doge,so amaze,much help,wow,much cool,very wow"
 
+        # }]
         context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
@@ -99,11 +106,12 @@ def startChat(request):
     rec_fb_id = DogeUser.objects.get(id = rec_pri_id).get_fb_id()
     
     msg = request.session['dogetext']
+    dogemsg = to_doge(msg)
     
     newC = Conversation.objects.createConvo(
         sender_pri_id,sender_fb_id,
         rec_pri_id, rec_fb_id,
-        msg)
+        dogemsg)
     return render(request,"app/index.html")
 
 def askFriend(request):
