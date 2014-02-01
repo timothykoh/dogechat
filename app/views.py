@@ -33,15 +33,15 @@ def index(request):
         info = [("hello", 1),("byebye",2)]
         for friend in friends:
             info.append(friend.get_Details())
-        chat_list = [
-        {
-            "msg_id" : "1",
-            "facebook_id" :"34324221",
-            "sender" : "43",
-            "timeSent" : "12",
-            "dogetext" : "much doge,so amaze,much help,wow,much cool,very wow"
-
-        }]
+#         chat_list = [
+#         {
+#             "msg_id" : "1",
+#             "facebook_id" :"34324221",
+#             "sender" : "43",
+#             "timeSent" : "12",
+#             "dogetext" : "much doge,so amaze,much help,wow,much cool,very wow"
+# 
+#         }]
         context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
