@@ -58,6 +58,28 @@ $(window).load(function(){
         $("#search_bar").css("display","none");
         $("#add_but").css("display", "block");
     });
+    $("#search_form").submit(function(e){
+        e.preventDefault();
+        var search_term = $("#search_field").val();
+        if (search_term === ""){
+            alert("Search term required.");
+        }
+        else{
+            $.ajax({
+                url: "",
+                type: "GET",
+                data:{
+                    "term": search_term
+                },
+                success: function(user_array){
+                    console.log(user_array);
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+    });
 });
 
 function switchPage(pageid){

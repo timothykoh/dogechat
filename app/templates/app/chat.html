@@ -1,10 +1,10 @@
 {% if chat_list %}
 <ul>
 {% for chat_item in chat_list %}
-    <li class="chat_item" data-sent="{{ chat_item.sent }}">
+    <li class="chat_item" data-msgid="{{ chat_item.msg_id }}">
         <img class='profile_pic' src="http://graph.facebook.com/{{ chat_item.facebook_id }}/picture?height=20&width=20" alt="">
-        <span class="nickname">{{ chat_item.nickname }}</span>
-        <span class="time">{{ chat_item.time }}</span>
+        <span class="nickname">{{ chat_item.sender }}</span>
+        <span class="time">{{ chat_item.timeSent }}</span>
         <span class="dogetext">{{ chat_item.dogetext }}</span>
     </li>
 {% endfor %}    
