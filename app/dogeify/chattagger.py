@@ -1,7 +1,10 @@
 import nltk
-nltk.data.path.append('./nltk_data')
+import pickle
+# nltk.data.path.append('./nltk_data')
 
-tagger = nltk.data.load('taggers/nps_chat_NaiveBayes_ubt.pickle')
+# tagger = nltk.data.load('taggers/nps_chat_NaiveBayes_ubt.pickle')
+with open('taggers/nps_chat_NaiveBayes_ubt.pickle') as f:
+    tagger = pickle.load(f)
 # tagger = nltk.data.load('taggers/nps_chat_ubt.pickle')
 
 def _simplify_tags(wut):

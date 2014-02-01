@@ -15,6 +15,7 @@ $(window).load(function(){
         randLeftArr = [];
         min_num = 10;
         max_num = 80;
+        doge_colors = ["red", "blue", "green", "yellow", "purple", "pink"];
         for (var i = 0; i < dogetextArr.length; i++){
             console.log(i);
             dogetextItem = $("<span class='doge_text'>" + dogetextArr[i] + "</span>");
@@ -31,8 +32,13 @@ $(window).load(function(){
             }
             randLeftArr.push(randLeft);
 
+            color_index = Math.floor(Math.rand()*(doge_colors.length-1));
+            doge_color = doge_colors[color_index];
+            doge_colors.splice(color_index,color_index);
+
             dogetextItem.css("top", randTop + "%");
             dogetextItem.css("left", randLeft + "%");
+            dogetextItem.css("color", doge_color);
             $("#doge_text_area").append(dogetextItem);
         }
 
