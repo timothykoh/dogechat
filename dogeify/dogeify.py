@@ -5,11 +5,26 @@ from nltk.stem.wordnet import WordNetLemmatizer
 
 lmt = WordNetLemmatizer()
 
+#first things first: DO NOT REPEAT
 doge_words = ["such", "much", "so", "very", "many"]
+wnt = {'N':'n', 'NP':'n', 'ADJ':'a', 'ADV':'r', 'V':'v', 'VD':'v', 'VG':'v', 'VN':'v', 'FW':'n', 'UH':'n'}
 
-def to_stem(word):
-    print word
-    return lmt.lemmatize(word)
+class DogeWord:
+    def __init__(self):
+        self.prev_choice = None
+
+    def __call__(self):
+        temp = random.choice(doge_words)
+        while temp == self.prev_choice:
+            temp = random.choice(doge_words)
+        self.prev_choice = temp
+        return temp
+
+get_doge_word = DogeWord()
+
+def to_stem(word, tag):
+    # print word
+    return lmt.lemmatize(word, wnt[tag])
 
 def to_doge(text):
     result = ["wow"]
@@ -22,10 +37,12 @@ def to_doge(text):
         else:
             return False
 
-    after = [to_stem(word) for word, tag in tags if much_want(tag)]
+    after = [to_stem(word, tag) for word, tag in tags if much_want(tag)]
 
     for word in after:
-        result.append(' '.join([random.choice(doge_words), word]))
+        if word[0] == "'":
+            continue
+        result.append(' '.join([get_doge_word(), word]))
 
     return result
 
@@ -33,6 +50,7 @@ def to_doge(text):
 #(that is an absolutely dreadful way of doing this but dammit I don't want to
 # construct an english grammar...)
 #lemmatizer doesn't expand abbreviations.
+#only keep adjectives if they're like a "basic form" already
 
 #just go through list. where you see PRO, get rid of words after it until you see a V, or
 #??? I forgot
