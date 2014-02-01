@@ -49,13 +49,13 @@ $(window).load(function(){
     $("#add_but").click(function(){
         $("#contacts_title").html("Add Friend");
         $(this).css("display", "none");
-        $("#search_bar").css("display", "block");
+        $("#search_field").css("display", "block");
         $("#add_back").css("display", "block");
     })
     $("#add_back").click(function(){
         $("#contacts_title").html("Friend");
         $(this).css("display", "none");
-        $("#search_bar").css("display","none");
+        $("#search_field").css("display","none");
         $("#add_but").css("display", "block");
     });
     $("#search_form").submit(function(e){
