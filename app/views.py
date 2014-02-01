@@ -75,3 +75,4 @@ def getContacts(request):
     infoDict = {"contactInfo":info}
     contactData = serializers.serialize('json',infoDict)
     return render(request,"app/people.html",contactData,content_type = 'application/json')
+
