@@ -15,6 +15,18 @@ def index(request):
     if request.session.has_key("user_info") == False:
         return HttpResponseRedirect(reverse("login"))
     else:
+        curUser = request.session["user_info"]
+        name = curUser["name"]
+        email = curUser["email"]
+        facebook_id = curUser["facebook_id"]
+        openChat = 
+        
+        
+        
+        
+        
+        
+        
         chat1 = {
                     "nickname" : "Timothy",
                     "facebook_id" : "747108288",
@@ -80,6 +92,5 @@ def getContacts(request):
     for friend in friends:
         info.append(friend.get_Details())
     infoDict = {"contactInfo":info}
-    contactData = serializers.serialize('json',infoDict)
-    return render(request,"app/people.html",contactData,content_type = 'application/json')
+    return render(request,"app/people.html",infoDict)
 
