@@ -66,7 +66,11 @@ def login_success(request):
 
 def getfriend(request):
     searchTerm = request.GET['term']
-    res = DogeUser.objects.filter(name__contains = "")
+    num = request.GET['num']
+    start = request.GET['start']
+    
+    res = DogeUser.objects.filter(name__contains = searchTerm)
+    
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
