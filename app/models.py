@@ -7,18 +7,11 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
 class DogeManager(BaseUserManager):
     def _create_user(self,email,is_manager,name,
         facebook_id):
-    
-        now = timezone.now()
-        email = normalize_email(email)
-    
         user = self.model(nickname = nickname, email = email, 
                     is_manager = is_manager,name = name,is_active = True,
                     date_joined = now, facebook_id = facebook_id)
         user.save()
         return user
-    
-    def create_user(self,nickname,email,name,facebook_id):
-        return self._create_user(email, False,name,facebook_id)
 
     def create_superuser(self,nickname,email,name,facebook_id):
         return self._create_user(email, True,name,facebook_id)  
@@ -55,15 +48,6 @@ class FriendReq(models.Model):
                 'from_user': unicode(self.from_user),
                 'to_user': unicode(self.to_user),
                 }
-        
-    def accept(self):
-        Friendship.objects.befriend(self.from_user,self.to_user)
-        self.accepted = True
-        self.save()
-    
-    def decline(self):
-        self.delete()
-    
     def cancel(self):
         self.delete()   
 
@@ -103,3 +87,4 @@ class Friendship(models.Model):
     
     def friend_count(self):
         return self.friends.count()
+

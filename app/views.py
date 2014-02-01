@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from app.models import User
 from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
 
