@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.http import (HttpResponseRedirect, HttpResponse)
 from django.core.urlresolvers import reverse
 
-
 from app.models import DogeUser
 from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
