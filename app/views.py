@@ -25,18 +25,21 @@ def index(request):
                     "nickname" : "Timothy",
                     "facebook_id" : "747108288",
                     "time" : "11:30am",
+                    "dogetext" : "wow,much fun,so playful,very glad",
                     "sent" : 1
                 }
         chat2 = {
                     "nickname" : "Foo Lai",
                     "facebook_id" : "choo.f.lai",
                     "time" : "12:22pm",
+                    "dogetext" : "wow,much fun,so playful,very glad",
                     "sent" : 1
                 }
         chat3 = {
                     "nickname" : "Vincent",
                     "facebook_id" : "vincom2",
                     "time" : "4:31pm",
+                    "dogetext" : "wow,much fun,so playful,very glad",
                     "sent" : 0
                 }
         chat_list = [chat1, chat2, chat3]

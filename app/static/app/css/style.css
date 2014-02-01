@@ -70,6 +70,9 @@
         float: right;
         color: #a5a5a5;
     }
+    .chat_item .dogetext{
+        display: none;
+    }
 #doge_page{
     display: none;
 }
@@ -83,7 +86,7 @@
         height: 90%;
         background-repeat: no-repeat;
         background-size: cover;
-        z-index: 5;
+        z-index: 2;
     }
     #doge_page #doge_top_bar{
         position: absolute;
@@ -109,3 +112,17 @@
             left: 0;
             cursor: pointer;
         }
+#doge_text_area{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 90%;
+    z-index: 3;
+}
+    #doge_text_area .doge_text{
+        font-size: 25px;
+        font-style: "Comic Sans", "Comic Sans MS", sans-serif;
+        color: red;
+        display: block;
+        position: absolute;
+    }
