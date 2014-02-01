@@ -216,7 +216,8 @@
 
 #search_field{
     /*display:none;*/
-
+    position: fixed;
+    top: 10%;
     border-radius: 75px;
     font-size: .75em;
     width: 90%;
