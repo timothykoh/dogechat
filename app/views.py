@@ -21,7 +21,7 @@ def index(request):
         name = curUser["name"]
         email = curUser["email"]
         facebook_id = curUser["facebook_id"]
-        user = DogeUser.objects.get(id = curUser["primary_id"])
+        user = curUser["primary_id"]
         curChat = Conversation.objects.getConvo(user)
         num = 0
         chat_list = []
@@ -79,15 +79,29 @@ def getfriend(request):
 
 def read(request):
     curChat = request.session['msg_id']
-    sender = request.session['sender_id']
+    sender = request.session['sender_pri_id']
     curUser = request.session['user_info']
-    rec = DogeUser.objects.get(id = curUser['primary_id'])
-    
+    rec = curUser['primary_id']
+    getChat = Conversation.objects.get(msg_id = curChat)
+    checkSend = (getChat.sender_pri_id == sender)
+    checkRec = getChat.rec_pri_id == rec
+    if (checkRec && checkRec)
+        getChat.boolRead = True
+        getChat.save()
+        
 
 def startChat(request):
     curUser = request.session["user_info"]
-    user = DogeUser.objects.get(id = curUser["primary_id"])
-    #someone needs to do what kind of event submit is used to let me know who he clicked on
+    sender_pri_id = curUser['primary_id']
+    sender_fb_id = curUser['facebook_id']
     
-    newC = Conversation.objects.createConvo(user,rec,msg)
+    rec_pri_id = request.session["rec_pri_id"]
+    rec_fb_id = DogeUser.objects.get(id = rec_pri_id).get_fb_id()
+    
+    msg = request.session['dogetext']
+    
+    newC = Conversation.objects.createConvo(
+        sender_pri_id,sender_fb_id,
+        rec_pri_id, rec_fb_id,
+        msg)
     return render(request,"app/index.html")
