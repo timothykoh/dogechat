@@ -7,13 +7,16 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
 class DogeManager(BaseUserManager):
     def _create_user(self,email,is_manager,name,
         facebook_id):
-        user = self.model(nickname = nickname, email = email, 
+        user = self.model(nickname = name, email = email, 
                     is_manager = is_manager,name = name,is_active = True,
                     date_joined = now, facebook_id = facebook_id)
         user.save()
         return user
+    
+    def create_user(self,email,name,facebook_id):
+        return _create_user(email,False,name,facebook_id)
 
-    def create_superuser(self,nickname,email,name,facebook_id):
+    def create_superuser(self,email,name,facebook_id):
         return self._create_user(email, True,name,facebook_id)  
 
 class DogeUser(AbstractBaseUser):
@@ -33,8 +36,11 @@ class DogeUser(AbstractBaseUser):
     def _get_full_name(self):
         return "%s" % (self.name)
     
+    def get_Details(self):
+        return ("%s" % (self.name), "%s" % (self.facebook_id))
+    
     class Meta:
-        ordering = ('facebook_id',)
+        ordering = ('name',)
 
 class FriendReq(models.Model):
     
@@ -70,8 +76,6 @@ class FriendMan(models.Manager):
         FriendReq.objects.filter(from_user=user1,to_user=user2).delete()
         FriendReq.objects.filter(from_user=user2,to_user=user1).delete()         
       
-
-        
 class Friendship(models.Model):
     user = models.OneToOneField(DogeUser,related_name="friendship")
     friends = models.ManyToManyField('self',symmetrical = True)
@@ -88,3 +92,12 @@ class Friendship(models.Model):
     def friend_count(self):
         return self.friends.count()
 
+class Conversation(models.Model):
+    user1 = models.OneToOneField(DogeUser,related_name='convo_user1')
+    user2 = models.OneToOneField(DogeUser,related_name='convo_user2')
+    boolFriend = models.BooleanField(default = False, blank = False)
+    
+    dateLast1 = models.DateTimeField(blank = False)
+    dateLast2 = models.DateTimeField(blank = False)
+    
+    

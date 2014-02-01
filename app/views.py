@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import (HttpResponseRedirect, HttpResponse)
 from django.core.urlresolvers import reverse
 
-from app.models import DogeUser, DogeManager
+from app.models import *
 from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
 from django.core import serializers
@@ -64,3 +64,15 @@ def getfriend(request):
     res = DogeUser.objects.filter(name__contains = "")
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
+
+def getContacts(request):
+    fb_id = request.GET['user_id']
+    curUser = DogeUser.objects.get(facebook_id=fb_id)
+    friends = FriendMan.friends_of(curUser)
+    info = dict()
+    start = 0
+    for friend in friends
+        info[start] = friend.get_Details()
+        start += 1
+    contactData = serializers.serialize('json',info)
+    return render(request,"app/people.html",info,content_type = 'application/json')
