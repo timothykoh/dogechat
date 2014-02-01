@@ -5,9 +5,10 @@ from nltk.stem.wordnet import WordNetLemmatizer
 
 lmt = WordNetLemmatizer()
 
-doge_words = ["such", "much", "so", "very"]
+doge_words = ["such", "much", "so", "very", "many"]
 
 def to_stem(word):
+    print word
     return lmt.lemmatize(word)
 
 def to_doge(text):
@@ -31,3 +32,8 @@ def to_doge(text):
 #definitely needs a pass through to filter out verbs to the right of pronouns?
 #(that is an absolutely dreadful way of doing this but dammit I don't want to
 # construct an english grammar...)
+#lemmatizer doesn't expand abbreviations.
+
+#just go through list. where you see PRO, get rid of words after it until you see a V, or
+#??? I forgot
+#unless list is already "too short"
