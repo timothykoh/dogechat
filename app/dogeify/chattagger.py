@@ -1,12 +1,12 @@
 import nltk
 #please copy the nltk_data directory contents to ~/nltk_data
 # nltk.data.path.append('./nltk_data')
-import pickle
+# import pickle
 
 
-# tagger = nltk.data.load('taggers/nps_chat_NaiveBayes_ubt.pickle')
-with open('taggers/nps_chat_NaiveBayes_ubt.pickle') as f:
-    tagger = pickle.load(f)
+tagger = nltk.data.load('taggers/nps_chat_NaiveBayes_ubt.pickle')
+# with open('taggers/nps_chat_NaiveBayes_ubt.pickle') as f:
+#     tagger = pickle.load(f)
 
 def _simplify_tags(wut):
     return [(word, nltk.tag.simplify_wsj_tag(tag)) for (word, tag) in wut]
