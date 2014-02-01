@@ -1,5 +1,4 @@
 import nltk
-<<<<<<< HEAD:dogeify/chattagger.py
 #please copy the nltk_data directory contents to ~/nltk_data
 # nltk.data.path.append('./nltk_data')
 import pickle
