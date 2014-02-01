@@ -26,7 +26,7 @@ def index(request):
         num = 0
         chat_list = []
         for i in curChat:
-            chat_list.append(i.getDetails)
+            chat_list.append(i.getDetails())
             num += 1    
         
         friends = Friendship.objects.friends_of(user)
@@ -102,10 +102,10 @@ def startChat(request):
     sender_pri_id = curUser['primary_id']
     sender_fb_id = curUser['facebook_id']
     
-    rec_pri_id = request.session["rec_pri_id"]
+    rec_pri_id = request.POST["rec_pri_id"]
     rec_fb_id = DogeUser.objects.get(id = rec_pri_id).get_fb_id()
     
-    msg = request.session['dogetext']
+    msg = request.POST['dogetext']
     dogemsg = to_doge(msg)
     
     newC = Conversation.objects.createConvo(
