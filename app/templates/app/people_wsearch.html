@@ -2,20 +2,21 @@
 <script>
 	window.base_url = "http://local.dev:8000/"
 	var people_url = {% url 'people' %}
-
+	var searchTerm = ["Ah Kong"]
+	
 	$.ajax({
 		url: base_url + people_url,
 		type: "GET",
 		data: {
-			"searchTerm": 
+			"searchTerm": searchTerm
 		},
-		success: function(results){
+		success: function(results) {
 			for 
 			$("#listthing").append("<ul>
 										<li class="people_item"></li>
 									</ul>")
 		},
-		error: function(err){
+		error: function(err) {
 			alert("Error doing something )=");
 		}
 	})

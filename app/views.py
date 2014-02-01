@@ -10,7 +10,7 @@ from django_facebook.api import get_facebook_graph
 from open_facebook import OpenFacebook
 from django.core import serializers
 
-from dogeify.dogeify import to_doge
+# from dogeify.dogeify import to_doge
 
 # Create your views here.
 def index(request):
@@ -38,7 +38,7 @@ def index(request):
         return render(request, "app/index.html", context)
 
 def login(request):
-    print to_doge("hey this is going to be doge")
+    # print to_doge("hey this is going to be doge")
     return render(request, "app/login.html")
 
 def login_success(request):
