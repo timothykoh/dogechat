@@ -1,7 +1,7 @@
 {% include 'django_facebook/_facebook_js.html' %}
 
 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
-    <input type="hidden" value="{% url 'index' %}" name="next" />
+    <input type="hidden" value="{% url 'login_success' %}" name="next" />
     <input type="hidden" value="{{ request.path }}" name="register_next" />
     <input type="hidden" value="{{ request.path }}" name="error_next" />
     {% csrf_token %}
