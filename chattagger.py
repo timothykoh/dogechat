@@ -1,3 +1,4 @@
-import nltk.data
+import pickle
 
-tagger = nltk.data.load('taggers/nps_chat_NaiveBayes_ubt.pickle') #replace with pickle.load('/full/path/to/it') if necessary
+with open('taggers/nps_chat_NaiveBayes_ubt.pickle') as f:
+    tagger = pickle.load(f)
