@@ -31,7 +31,7 @@ def index(request):
         info = []
         for friend in friends:
             info.append(friend.get_Details())
-        
+
         context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
@@ -73,5 +73,4 @@ def getfriend(request):
     
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
-
 
