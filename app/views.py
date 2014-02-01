@@ -77,6 +77,13 @@ def getfriend(request):
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
+def read(request):
+    curChat = request.session['msg_id']
+    sender = request.session['sender_id']
+    curUser = request.session['user_info']
+    rec = DogeUser.objects.get(id = curUser['primary_id'])
+    
+
 def startChat(request):
     curUser = request.session["user_info"]
     user = DogeUser.objects.get(id = curUser["primary_id"])
