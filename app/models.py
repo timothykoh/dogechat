@@ -93,8 +93,8 @@ class Friendship(models.Model):
         return self.friends.count()
 
 class Conversation(models.Model):
-    user1 = models.OneToOneField(DogeUser)
-    user2 = models.OneToOneField(DogeUser)
+    user1 = models.OneToOneField(DogeUser,related_name='convo_user1')
+    user2 = models.OneToOneField(DogeUser,related_name='convo_user2')
     boolFriend = models.BooleanField(default = False, blank = False)
     
     dateLast1 = models.DateTimeField(blank = False)
