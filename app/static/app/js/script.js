@@ -17,24 +17,25 @@ $(window).load(function(){
         min_num = 10;
         max_num = 80;
         doge_colors = ["red", "blue", "green", "yellow", "purple", "pink"];
+        doge_colors.sort(function() {
+            return .5 - Math.random();
+        });
         for (var i = 0; i < dogetextArr.length; i++){
             dogetextItem = $("<span class='doge_text'>" + dogetextArr[i] + "</span>");
 
             randTop = getRandRange(min_num, max_num);
-            while(randClash(randTop, randTopArr, 10)){
+            while(randClash(randTop, randTopArr, 5)){
                 randTop = getRandRange(min_num, max_num);
             }
             randTopArr.push(randTop);
 
             randLeft = getRandRange(min_num, max_num);
-            while(randClash(randLeft, randLeftArr, 10)){
+            while(randClash(randLeft, randLeftArr, 5)){
                 randLeft = getRandRange(min_num, max_num);
             }
             randLeftArr.push(randLeft);
 
-            color_index = Math.floor(Math.random()*(doge_colors.length-1));
-            doge_color = doge_colors[color_index];
-            doge_colors.splice(color_index,color_index);
+            doge_color = doge_colors[i%doge_colors.length];
 
             dogetextItem.css("top", randTop + "%");
             dogetextItem.css("left", randLeft + "%");

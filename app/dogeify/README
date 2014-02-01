@@ -1,0 +1,1 @@
+COPY nltk_data/ INTO ~/
