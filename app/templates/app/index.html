@@ -1,15 +1,33 @@
-{% include 'app/base_template.html' %}
-
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doge Chat</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
+</head>
+<body>
+    <div class="page selected" id="chat">
+        <h1>Chat</h1>
+        {% include 'app/chat.html' %}
+    </div>
+    <div class="page" id="people">
+        <h1>People</h1>
+    </div>
 
-{% if user_list %}
-    <ul>
-    {% for user in user_list %}
-        <li>{{ user.name }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No users available</p>
-{% endif %}
+    <div id="btm_bar">
+        <div class="page_switcher selected" data-pageid="chat">
+            <img src="{% static 'app/icons/chat_icon.png' %}" alt="">
+            <span>Chat</span>
+        </div><div class="page_switcher" data-pageid="people">
+            <img src="{% static 'app/icons/people_icon.png' %}" alt="">
+            <span>People</span>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'app/js/script.js' %}"></script>
+</body>
+</html>

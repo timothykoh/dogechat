@@ -11,6 +11,7 @@ def index(request):
     if request.session.has_key("user_info") == False:
         return HttpResponseRedirect(reverse("login"))
     else:
+        print request.session["user_info"]
         # graph = get_facebook_graph(request)
         # facebook_me = graph.get("me")
         # print facebook_me
