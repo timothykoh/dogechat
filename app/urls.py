@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^login/$', views.login, name='login'),
     url(r'^login_success/$', views.login_success, name='login_success'),
     url(r'^friends/$',views.getfriend,name='search'),
+    url(r'^send_msg/$',views.startChat,name='start_chat')
 )
