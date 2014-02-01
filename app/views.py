@@ -69,7 +69,18 @@ def login_success(request):
 
 def getfriend(request):
     searchTerm = request.GET['term']
-    res = DogeUser.objects.filter(name__contains = "")
+    num = request.GET['num']
+    start = request.GET['start']
+    
+    res = DogeUser.objects.filter(name__contains = searchTerm)
+    
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
+def startChat(request):
+    curUser = request.session["user_info"]
+    user = DogeUser.objects.get(id = curUser["primary_id"])
+    #someone needs to do what kind of event submit is used to let me know who he clicked on
+    
+    newC = Conversation.objects.createConvo(user,rec,msg)
+    return render(request,"app/index.html")
