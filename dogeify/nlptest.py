@@ -2,6 +2,8 @@
 import nltk
 from chattagger import tagger
 
+nltk.data.path.append('./nltk_data')
+
 # sentence = "so I heard you like mudkips. this is dangerous."
 sentence = 'I want you'
 document = 'What is the sentence? "The Jews are our affliction!"' #herp derp such friedrich
