@@ -125,12 +125,12 @@ class Conversation(models.Model):
     
     def getDetails(self):
         return { 
-            'msg_id' : "%s" % (msg_id),
-            'sender' : "%s" % sender.get_nick,
-            'rec' : "%s" % rec.get_nick,
-            'boolRead' : "%s" % boolRead,
-            'timeSent' : "%s" % timeSent,
-            'convo1' : "%s" % convo1
+            'msg_id' : "%s" % (self.msg_id),
+            'sender' : "%s" % self.sender.get_nick,
+            'rec' : "%s" % self.rec.get_nick,
+            'boolRead' : "%s" % self.boolRead,
+            'timeSent' : "%s" % self.timeSent,
+            'convo1' : "%s" % self.convo1
                 }
                 
     
