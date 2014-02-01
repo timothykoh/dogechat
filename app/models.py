@@ -13,6 +13,7 @@ class DogeManager(BaseUserManager):
                     is_manager = is_manager,name = name,is_active = True,
                     date_joined = now, facebook_id = facebook_id)
         user.save()
+        Friendship.objects.create(user = user)
         return user
 
     def create_user(self,email,name,facebook_id):
@@ -33,9 +34,6 @@ class DogeUser(AbstractBaseUser):
     objects = DogeManager()
     
     def __unicode__(self):
-        return self.name
-    
-    def _get_full_name(self):
         return "%s" % (self.name)
     
     def get_nick(self):
@@ -51,16 +49,16 @@ class FriendReq(models.Model):
     
     from_user = models.ForeignKey(DogeUser,related_name="friendreq_from")
     to_user = models.ForeignKey(DogeUser,related_name="friendreq_to")
-    created = models.DateTimeField(default = datetime.datetime.now)
+    created = models.DateTimeField(default = timezone.now())
     accepted = models.BooleanField(default = False)
     
     def __unicode__(self):
-        return _(u'%(from_user)s wants to be friends with %(to_user)s') % {
-                'from_user': unicode(self.from_user),
-                'to_user': unicode(self.to_user),
+        return u'%(from_user)s wants to be friends with %(to_user)s' % {
+                'from_user': unicode(self.from_user.get_nick),
+                'to_user': unicode(self.to_user.get_nick),
                 }
     def accept(self):
-        Friendship.obkects.befriend(self.from_user,self.to_user)
+        Friendship.objects.befriend(self.from_user,self.to_user)
         self.accepted = True
         self.save()
     
@@ -75,17 +73,17 @@ class FriendMan(models.Manager):
         return DogeUser.objects.filter(friendship__friends__user = user)
     
     def are_friends(self,user1,user2):
-        friendship = Friendship.objects.get(dogeuser=user1)
-        return bool(friendship.friends.filter(dogeuser=user2).exists())
+        friendship = Friendship.objects.get(user=user1)
+        return bool(friendship.friends.filter(user=user2).exists())
     
     def befriend(self,user1,user2):
-        friendship = Friendship.objects.get(dogeuser=user1)
-        friendship.friends.add(Friendship.objects.get(dogeuser=user2))
+        friendship = Friendship.objects.get(user=user1)
+        friendship.friends.add(Friendship.objects.get(user=user2))
         FriendReq.objects.filter(from_user=user1,to_user=user2).delete()
     
     def unfriend(self,user1,user2):
-        friendship = Friendship.objects.get(dogeuser=user1)
-        friendship.friends.remove(Friendship.objects.get(dogeuser=user2))
+        friendship = Friendship.objects.get(user=user1)
+        friendship.friends.remove(Friendship.objects.get(user=user2))
         FriendReq.objects.filter(from_user=user1,to_user=user2).delete()
         FriendReq.objects.filter(from_user=user2,to_user=user1).delete()         
       
