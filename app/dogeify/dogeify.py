@@ -36,7 +36,15 @@ class DogeWord:
 _get_doge_word = DogeWord()
 
 def _to_stem(word, tag):
-    return lmt.lemmatize(word, wnt[tag])
+    def lemmatize(word, tag):
+        return lmt.lemmatize(word, wnt[tag])
+    
+    def stem(word, tag):
+        return stm.stem(word)
+
+    functions = [lemmatize, stem]
+    fw = [3,1]
+    return functions[weighted_choice(fw)](word, tag)
 
 def to_doge(text):
     result = ["wow"]
