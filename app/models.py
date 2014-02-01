@@ -110,18 +110,13 @@ class ConvoManager(models.Manager):
     def getConvo(self,rec_pri_id):
         return Conversation.objects.filter(rec_pri_id = rec_pri_id)
     
-    def createConvo(self,sender_pri_id,sender_fb_id,rec_pri_id,rec_fb_id,msg):
+    def createConvo(self,sender_pri_id,sender_fb_id,
+                    rec_pri_id,rec_fb_id,dogetext):
         send = DogeUser.objects.get(id = sender_pri_id)
         rec = DogeUser.objects.get(id = rec_pri_id)
         check = Friendship.objects.are_friends(send,rec)
         if check:
-            return 
-            Conversation.objects.create(
-                sender_pri_id = sender_pri_id,
-                sender_fb_id = sender_fb_id,
-                rec_pri_id = rec_pri_id,
-                rec_fb_id = rec_fb_id,
-                dogetext = msg)
+            return Conversation.objects.create(sender_pri_id = send.id, sender_fb_id = send.facebook_id, rec_pri_id = rec.id, rec_fb_id = rec.facebook_id, dogetext = dogetext)
 
 class Conversation(models.Model):
     msg_id = models.AutoField(primary_key = True)
