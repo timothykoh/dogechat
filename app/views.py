@@ -19,28 +19,27 @@ def index(request):
         name = curUser["name"]
         email = curUser["email"]
         facebook_id = curUser["facebook_id"]
+        user = DogeUser.objects.get(id = curUser["primary_id"])
+        curChat = Conversation.objects.getConvo(user)
+        num = 0
+        chat_list = []
+        for i in curChat:
+            num = {
+                    'user1_nick' : i.user1.get_nick,
+                    'user2_nick' : i.user2.get_nick,
+                    'usr1_last_sent' : i.dateLast,
+                    'dogetext' : i.convo
+                    }
+            chat_list.append(num)
+            num += 1
         
         
-        chat1 = {
-                    "nickname" : "Timothy",
-                    "facebook_id" : "747108288",
-                    "time" : "11:30am",
-                    "sent" : 1
-                }
-        chat2 = {
-                    "nickname" : "Foo Lai",
-                    "facebook_id" : "choo.f.lai",
-                    "time" : "12:22pm",
-                    "sent" : 1
-                }
-        chat3 = {
-                    "nickname" : "Vincent",
-                    "facebook_id" : "vincom2",
-                    "time" : "4:31pm",
-                    "sent" : 0
-                }
-        chat_list = [chat1, chat2, chat3]
-        context = {"chat_list" : chat_list}
+        friends = Friendship.objects.friends_of(user)
+        info = []
+        for friend in friends:
+            info.append(friend.get_Details())
+        
+        context = {"chat_list" : chat_list, "contact_info" : info}
         return render(request, "app/index.html", context)
 
 def login(request):
@@ -65,7 +64,7 @@ def login_success(request):
                     "name" : name,
                     "email" : email,
                     "facebook_id" : facebook_id,
-                    "primaryID" : primary_id
+                    "primary_id" : primary_id
     }
 
     request.session["user_info"] = user_info
@@ -78,13 +77,4 @@ def getfriend(request):
     data = serializers.serialize('json',res)
     return HttpResponse(data,mimetype='application/json')
 
-def getContacts(request):
-    fb_id = request.GET['user_id']
-    curUser = DogeUser.objects.get(facebook_id=fb_id)
-    friends = FriendMan.friends_of(curUser)
-    info = []
-    for friend in friends:
-        info.append(friend.get_Details())
-    infoDict = {"contactInfo":info}
-    return render(request,"app/people.html",infoDict)
 

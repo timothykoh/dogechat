@@ -38,6 +38,9 @@ class DogeUser(AbstractBaseUser):
     def _get_full_name(self):
         return "%s" % (self.name)
     
+    def get_nick(self):
+        return "%s" % (self.nickname)
+    
     def get_Details(self):
         return ("%s" % (self.name), "%s" % (self.facebook_id))
     
@@ -56,12 +59,20 @@ class FriendReq(models.Model):
                 'from_user': unicode(self.from_user),
                 'to_user': unicode(self.to_user),
                 }
+    def accept(self):
+        Friendship.obkects.befriend(self.from_user,self.to_user)
+        self.accepted = True
+        self.save()
+    
+    def decline(self):
+        self.delete()
+        
     def cancel(self):
         self.delete()   
 
 class FriendMan(models.Manager):
     def friends_of(self,user):
-        return DogeUser.objects.filter(friendship_friends_dogeuser = user)
+        return DogeUser.objects.filter(friendship__friends__user = user)
     
     def are_friends(self,user1,user2):
         friendship = Friendship.objects.get(dogeuser=user1)
@@ -94,17 +105,26 @@ class Friendship(models.Model):
     def friend_count(self):
         return self.friends.count()
 
+class ConvoManager(models.Manager):
+    def getConvo(self,user):
+        return Conversation.objects.filter(user1 = user) | Conversation.objects.filter(user2 = user)
+    
+    def createConvo(self,user1,user2):
+        check = Friendship.objects.are_friends(user1,user2)
+        if check:
+            return Conversation.objects.create(user1 = user1,user2 = user2, boolFriend = check, convoUser1 = "")
+
 class Conversation(models.Model):
     user1 = models.OneToOneField(DogeUser,related_name='convo_user1')
     user2 = models.OneToOneField(DogeUser,related_name='convo_user2')
     boolFriend = models.BooleanField(default = False, blank = False)
     
-    dateLast1 = models.DateTimeField(blank = False)
-    dateLast2 = models.DateTimeField(blank = False)
+    dateLast = models.DateTimeField(blank = False,auto_now=True)
     
-    convoUser1 = models.TextField()
-    convoUser2 = models.TextField()
+    convo = models.TextField()
     
-    
-    
+    objects = ConvoManager()
+
+
+            
     
