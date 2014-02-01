@@ -1,8 +1,8 @@
 import nltk
-nltk.data.path.append('./nltk_data')
+#please copy the nltk_data directory contents to ~/nltk_data
+# nltk.data.path.append('./nltk_data')
 
 tagger = nltk.data.load('taggers/nps_chat_NaiveBayes_ubt.pickle')
-# tagger = nltk.data.load('taggers/nps_chat_ubt.pickle')
 
 def _simplify_tags(wut):
     return [(word, nltk.tag.simplify_wsj_tag(tag)) for (word, tag) in wut]
@@ -22,3 +22,4 @@ def get_tags(text):
 # rainbows
 # basically anything that didn't occur in the chat corpus I'm guessing
 # if you don't use bayesian, it just doesn't guess anything for these. which is "better"?
+#new one: home -> DET
