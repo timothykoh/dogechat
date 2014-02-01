@@ -44,10 +44,12 @@
         }
 
 #chat{
+    margin-top: 30px;
     height: 100%;
 }
     #chat #chat_top_bar{
-        position: absolute;
+        position: fixed;
+        top: 0;
         height: 10%;
         width: 100%;
         background-color: #ecf0f1;
@@ -128,7 +130,8 @@
     height: 100%;
 }
     #people #people_top_bar{
-        position: absolute;
+        position: fixed;
+        top: 0;
         height: 10%;
         width: 100%;
         background-color: #ecf0f1;

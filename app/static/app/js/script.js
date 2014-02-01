@@ -10,6 +10,7 @@ $(window).load(function(){
         $("#doge_top_bar span").html($(this).find(".nickname").html());
         $("#doge_text_area").empty();
         var dogetext = $(this).find(".dogetext").html();
+        console.log(dogetext);
         dogetextArr = dogetext.split(",");
         randTopArr = [];
         randLeftArr = [];
@@ -17,7 +18,6 @@ $(window).load(function(){
         max_num = 80;
         doge_colors = ["red", "blue", "green", "yellow", "purple", "pink"];
         for (var i = 0; i < dogetextArr.length; i++){
-            console.log(i);
             dogetextItem = $("<span class='doge_text'>" + dogetextArr[i] + "</span>");
 
             randTop = getRandRange(min_num, max_num);
@@ -32,7 +32,7 @@ $(window).load(function(){
             }
             randLeftArr.push(randLeft);
 
-            color_index = Math.floor(Math.rand()*(doge_colors.length-1));
+            color_index = Math.floor(Math.random()*(doge_colors.length-1));
             doge_color = doge_colors[color_index];
             doge_colors.splice(color_index,color_index);
 
