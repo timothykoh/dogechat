@@ -5,7 +5,7 @@
  	{% ifchanged name.0 %}
 	<li class="contact_index">{{ name.0 }}</li>
 	{% endifchanged %}
-	<li class="contact" data-userid=userid>
+	<li class="contact" data-userid={{ userid }}>
 		<img class='profile_pic' src="http://graph.facebook.com/{{ facebook_id }}/picture?height=20&width=20" alt="">
         <span class="name">{{ name }}</span>
 	</li>

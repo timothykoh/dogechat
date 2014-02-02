@@ -204,10 +204,12 @@
             box-sizing: border-box;         /* Opera/IE 8+ */
         }
         #doge_page #doge_top_bar #doge_back{
-            position: absolute;
+            position: fixed;
             padding: 15px;
+            top: 0;
             left: 0;
             cursor: pointer;
+            z-index: 10;
         }
 #doge_text_area{
     position: absolute;

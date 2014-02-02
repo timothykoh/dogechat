@@ -24,13 +24,13 @@ $(window).load(function(){
             dogetextItem = $("<span class='doge_text'>" + dogetextArr[i] + "</span>");
 
             randTop = getRandRange(min_num, max_num);
-            while(randClash(randTop, randTopArr, 5)){
+            while(randClash(randTop, randTopArr, 3)){
                 randTop = getRandRange(min_num, max_num);
             }
             randTopArr.push(randTop);
 
             randLeft = getRandRange(min_num, max_num);
-            while(randClash(randLeft, randLeftArr, 5)){
+            while(randClash(randLeft, randLeftArr, 3)){
                 randLeft = getRandRange(min_num, max_num);
             }
             randLeftArr.push(randLeft);
@@ -104,7 +104,7 @@ $(window).load(function(){
             $("#send_chat_popup").removeClass("shown");
             $.ajax({
                 url: "send_msg",
-                type: "POST",
+                type: "GET",
                 data: {
                     "rec_pri_id": window.send_userid,
                     "dogetext": msg

@@ -14,9 +14,9 @@ from dogeify.dogeify import to_doge
 
 # Create your views here.
 def index(request):
-    if request.session.has_key("user_info") == False:
-        return HttpResponseRedirect(reverse("login"))
-    else:
+    #if request.session.has_key("user_info") == False:
+        #return HttpResponseRedirect(reverse("login"))
+    #else:
         curUser = request.session["user_info"]
         name = curUser["name"]
         email = curUser["email"]
@@ -30,7 +30,7 @@ def index(request):
             num += 1    
         
         friends = Friendship.objects.friends_of(user)
-        info = [("hello", 1),("byebye",2)]
+        info = []
         for friend in friends:
             info.append(friend.get_Details())
 #         chat_list = [
@@ -98,21 +98,24 @@ def read(request):
         
 
 def startChat(request):
+    print("HI")
     curUser = request.session["user_info"]
+    print(curUser)
     sender_pri_id = curUser['primary_id']
     sender_fb_id = curUser['facebook_id']
-    
-    rec_pri_id = request.POST["rec_pri_id"]
+    print("HELLO")
+    rec_pri_id = request.GET["rec_pri_id"]
+    print(rec_pri_id)
     rec_fb_id = DogeUser.objects.get(id = rec_pri_id).get_fb_id()
     
-    msg = request.POST['dogetext']
-    dogemsg = to_doge(msg)
+    msg = request.GET['dogetext']
+    dogemsg = ",".join(to_doge(msg))
     
     newC = Conversation.objects.createConvo(
         sender_pri_id,sender_fb_id,
         rec_pri_id, rec_fb_id,
         dogemsg)
-    return render(request,"app/index.html")
+    return HttpResponse("hello")
 
 def askFriend(request):
     curUser = request.session["user_info"]
